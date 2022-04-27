@@ -138,6 +138,10 @@
                 "type": "color",
                 "default": "#ffffff"
             },
+            "header_background": {
+                "type": "color",
+                "default": "#ffffff"
+            },
             "header_button_text_color": {
                 "type": "select",
                 "options": [
@@ -145,6 +149,14 @@
                     "Dark"
                 ],
                 "default": "Dark"
+            },
+            "header_button_text": {
+                "type": "text",
+                "default": "Try Hireflix"
+            },
+            "header_button_href": {
+                "type": "text",
+                "default": "#"
             },
             "post_image_width": {
                 "type": "select",
@@ -156,19 +168,24 @@
                 "default": "Wide",
                 "group": "post"
             },
-            "email_signup_for_logged_out_visitors": {
+            "call_to_action_block_placement": {
                 "type": "select",
                 "options": [
-                    "Footer",
                     "Bottom of post",
+                    "After recent posts",
                     "None"
                 ],
-                "default": "Footer",
+                "default": "After recent posts",
                 "group": "post"
             },
-            "email_signup_text": {
+            "call_to_action_text": {
                 "type": "text",
-                "default": "Sign up for more like this.",
+                "default": "Hireflix lets you hire faster while improving your screening process",
+                "group": "post"
+            },
+            "call_to_action_text_subtitle": {
+                "type": "text",
+                "default": "This is a subtitle where you can describe how your company achieves the above",
                 "group": "post"
             },
             "show_recent_posts": {

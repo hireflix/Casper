@@ -21,6 +21,7 @@ production stylesheet in assets/built/screen.css
 9.  Error Template
 11. Site Footer
 12. Dark Mode
+13. Floating Header
 
 */
 
@@ -75,13 +76,13 @@ production stylesheet in assets/built/screen.css
 /* Full width page blocks */
 .outer {
     position: relative;
-    padding: 0 4vmin;
+    padding: 0 4vw;
 }
 
 /* Centered content container blocks */
 .inner {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 910px;
     width: 100%;
 }
 
@@ -92,7 +93,7 @@ production stylesheet in assets/built/screen.css
 .site-header {
     position: relative;
     color: #fff;
-    background: var(--ghost-accent-color);
+    background: var(--header-bg-color);
 }
 
 .site-header-cover {
@@ -172,10 +173,17 @@ production stylesheet in assets/built/screen.css
 
 .gh-head {
     padding: 1vmin 4vmin;
+    padding-top: 12px;
+    padding-bottom: 12px;
     font-size: 1.6rem;
     line-height: 1.3em;
     color: #fff;
-    background: var(--ghost-accent-color);
+    background: var(--header-bg-color);
+}
+.gh-head .inner {
+    margin-bottom: 50px;
+    max-width: 1104px;
+    padding-top: 44px;
 }
 
 .gh-head a {
@@ -304,13 +312,15 @@ production stylesheet in assets/built/screen.css
 
 a.gh-head-button {
     display: block;
-    padding: 8px 15px;
-    color: var(--button-text-color, var(--color-darkgrey));
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    font-size: 1.5rem;
+    padding: 10px 18px;
+    color: #ffffff;
+    font-weight: 800;
+    /* letter-spacing: -0.015em; */
+    font-size: 1.75rem;
     line-height: 1em;
-    background: var(--button-bg-color, #fff);
+    user-select: none;
+    --webkit-font-smoothing: antialiased;
+    background: var(--ghost-accent-color);
     border-radius: 30px;
 }
 
@@ -524,7 +534,7 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
     position: relative;
     display: grid;
     grid-gap: 4vmin;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     padding: 4vmin 0;
 }
 
@@ -566,7 +576,7 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
     position: relative;
     display: block;
     overflow: hidden;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .post-card-image {
@@ -578,9 +588,12 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
 }
 
 .post-card-content-link {
-    position: relative;
-    display: block;
     color: var(--color-darkgrey);
+    position: relative;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: block;
+    padding: 25px 0 0;
 }
 
 .post-card-content-link:hover {
@@ -588,7 +601,7 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
 }
 
 .post-card-header {
-    margin: 20px 0 0;
+    margin: 0;
 }
 
 .post-feed .no-image .post-card-content-link {
@@ -639,7 +652,7 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
 }
 
 .post-card-excerpt p {
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
     display: -webkit-box;
     overflow-y: hidden;
     -webkit-line-clamp: 3;
@@ -649,8 +662,9 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
 
 .post-card-meta {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 0;
+    padding: 0 25px 0 0;
 }
 
 .author-profile-image,
@@ -719,6 +733,17 @@ body:not(.gh-head-open) .gh-burger:hover .gh-burger-inner::after {
     line-height: 1.5em;
 }
 
+.post-card-byline-reading-time {
+    flex-shrink: 0;
+    margin-left: 20px;
+    color: #738a94;
+    font-size: 1.2rem;
+    line-height: 33px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
 .post-card-byline-date .bull {
     display: inline-block;
     margin: 0 2px;
@@ -758,7 +783,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 
 @media (min-width: 701px) {
     .post-feed.list .post-card-large {
-        grid-column: 1 / span 3;
+        grid-column: 1 / span 2;
         display: grid;
         grid-gap: 4vmin;
         grid-template-columns: 3fr 5fr;
@@ -782,7 +807,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 
 @media (min-width: 1001px) {
     .post-card-large {
-        grid-column: 1 / span 3;
+        grid-column: 1 / span 2;
         display: grid;
         grid-gap: 4vmin;
         grid-template-columns: 1fr 1fr 1fr;
@@ -1467,7 +1492,19 @@ iframe.instagram-media + script + :not([id]) {
     padding: 4vmin;
     margin: 40px auto -40px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: color-mod(var(--color-darkgrey) l(-5%));
+    background: #ffffff;
+}
+
+.read-more-cta-box {
+    background: #fff;
+    width: 100%;
+    border-radius: 4px;
+    padding: 40px 15px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
 }
 
 .read-more {
@@ -1477,16 +1514,16 @@ iframe.instagram-media + script + :not([id]) {
 }
 
 .read-more .post-card-title {
-    color: #fff;
+    /* color: #fff; */
     opacity: 0.8;
 }
 
 .read-more .post-card-excerpt {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0,0,0,.7);
 }
 
 .read-more .post-card-byline-content a {
-    color: #fff;
+    /* color: #fff; */
 }
 
 
@@ -1689,8 +1726,12 @@ iframe.instagram-media + script + :not([id]) {
 .site-footer {
     position: relative;
     margin: 40px 0 0 0;
-    padding: 40px 4vmin 140px;
+    padding: 0 80px;
+    height: 100px;
     color: #fff;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
     background: color-mod(var(--color-darkgrey) l(-5%));
 }
 
@@ -2089,6 +2130,212 @@ html.dark-mode .kg-header-card h3.kg-header-card-subheader {
         color: #fff;
     }
 }
+
+/* 7.5. Floating Header
+/* ---------------------------------------------------------- */
+
+.floating-header {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-bottom: rgba(0,0,0,0.06) 1px solid;
+    background: rgba(255,255,255,0.95);
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translate3d(0, -120%, 0);
+}
+
+.floating-active {
+    visibility: visible;
+    transition: all 500ms cubic-bezier(0.22, 1, 0.27, 1);
+    transform: translate3d(0, 0, 0);
+}
+
+.floating-header-logo {
+    overflow: hidden;
+    margin: 0 0 0 20px;
+    font-size: 1.6rem;
+    line-height: 1em;
+    letter-spacing: -1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.floating-header-logo a {
+    display: flex;
+    align-items: center;
+    color: var(--darkgrey);
+    line-height: 1.1em;
+    font-weight: 700;
+}
+
+.floating-header-logo a:hover {
+    text-decoration: none;
+}
+
+.floating-header-logo img {
+    margin: 0 10px 0 0;
+    max-height: 20px;
+}
+
+.floating-header-divider {
+    margin: 0 5px;
+    line-height: 1em;
+}
+
+.floating-header-title {
+    flex: 1;
+    overflow: hidden;
+    margin: 0;
+    color: #2e2e2e;
+    font-size: 1.6rem;
+    line-height: 1.3em;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.floating-header-share {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 2%;
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+.floating-header-share a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-header-share svg {
+    width: auto;
+    height: 16px;
+    fill: #fff;
+}
+
+.floating-header-share-label {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    color: rgba(0,0,0,0.7);
+    font-weight: 500;
+}
+
+.floating-header-share-label svg {
+    margin: 0 5px 0 10px;
+    width: 18px;
+    height: 18px;
+    stroke: rgba(0,0,0,0.7);
+    transform: rotate(90deg);
+}
+
+.floating-header-share-tw,
+.floating-header-share-fb {
+    display: block;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    line-height: 48px;
+    text-align: center;
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.floating-header-share-tw {
+    background: #33b1ff;
+}
+
+.floating-header-share-fb {
+    background: #005e99;
+}
+
+.progress {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border: none;
+    color: var(--blue);
+    background: transparent;
+
+    appearance: none;
+}
+
+.progress::-webkit-progress-bar {
+    background-color: transparent;
+}
+
+.progress::-webkit-progress-value {
+    background-color: var(--blue);
+}
+
+.progress::-moz-progress-bar {
+    background-color: var(--blue);
+}
+
+.progress-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+}
+
+.progress-bar {
+    display: block;
+    width: 50%;
+    height: inherit;
+    background-color: var(--blue);
+}
+
+@media (max-width: 900px) {
+    .floating-header {
+        height: 40px;
+    }
+    .floating-header-title,
+    .floating-header-logo {
+        font-size: 1.5rem;
+    }
+    .floating-header-share-tw,
+    .floating-header-share-fb {
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+    }
+}
+
+@media (max-width: 800px) {
+    .floating-header-logo {
+        margin-left: 10px;
+    }
+    .floating-header-logo a {
+        color: #2e2e2e;
+    }
+    .floating-header-title,
+    .floating-header-divider {
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 450px) {
+    .floating-header-share-label {
+        display: none;
+    }
+}
+
 
 /*
 

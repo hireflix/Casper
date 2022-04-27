@@ -83,20 +83,19 @@ into the {body} tag of the default.hbs template --}}
 </main>
 
 {{!-- A signup call to action is displayed here, unless viewed as a logged-in member --}}
-{{#match @custom.email_signup_for_logged_out_visitors "!=" "None"}}
-{{#unless @member}}{{#if access}}
-    <section class="footer-cta {{#match @custom.email_signup_for_logged_out_visitors "Bottom of post"}}cta-alt{{/match}}">
-        <div class="inner">
-            {{#if @custom.email_signup_text}}<h2>{{@custom.email_signup_text}}</h2>{{/if}}
-            <a class="footer-cta-button" href="#/portal" data-portal>
-                <div class="footer-cta-input">Enter your email</div>
-                <span>Subscribe</span>
-            </a>
-            {{!-- ^ This looks like a form element, but it's just a link to Portal,
-            making the form validation and submission much simpler. --}}
-        </div>
-    </section>
-{{/if}}{{/unless}}
+{{#match @custom.call_to_action_block_placement "==" "Bottom of post"}}
+<section class="footer-cta cta-alt">
+    <div class="inner">
+        {{#if @custom.call_to_action_text}}<h2>{{@custom.call_to_action_text}}</h2>{{/if}}
+        {{#if @custom.call_to_action_text_subtitle}}<h4>{{@custom.call_to_action_text_subtitle}}</h4>{{/if}}
+        {{!-- <a class="footer-cta-button" href="#/portal" data-portal>
+            <div class="footer-cta-input">Enter your email</div>
+            <span>Subscribe</span>
+        </a> --}}
+        {{!-- ^ This looks like a form element, but it's just a link to Portal,
+        making the form validation and submission much simpler. --}}
+    </div>
+</section>
 {{/match}}
 
 
@@ -108,18 +107,26 @@ into the {body} tag of the default.hbs template --}}
     This query gets the latest 3 posts on the site, but adds a filter to
     exclude the post we're currently on from being included. --}}
     {{#get "posts" filter="id:-{{id}}" include="authors" limit="3" as |more_posts|}}
-
         {{#if more_posts}}
             <aside class="read-more-wrap">
                 <div class="read-more inner">
                     {{#foreach more_posts}}
-                        {{> "post-card"}}
+                        {{> "post-card" variant='read-more'}}
                     {{/foreach}}
                 </div>
+                {{#match @custom.call_to_action_block_placement "==" "After recent posts"}}
+                <div class="read-more-cta-box">
+                    {{#if @custom.call_to_action_text}}<h2>{{@custom.call_to_action_text}}</h2>{{/if}}
+                    {{#if @custom.call_to_action_text_subtitle}}<h4>{{@custom.call_to_action_text_subtitle}}</h4>{{/if}}   
+                </div>
+                </div>
+                {{/match}}
             </aside>
         {{/if}}
 
     {{/get}}
 {{/if}}
+
+{{> floating-header}}
 
 {{/post}}

@@ -11,10 +11,9 @@
 
     <style>
         :root {
-            {{#if @custom.header_button_background}}
-            --button-bg-color: {{@custom.header_button_background}};
+            {{#if @custom.header_background}}
+            --header-bg-color: {{@custom.header_background}};
             {{/if}}
-            --button-text-color: {{#match @custom.header_button_text_color "Light"}}#fff{{else}}var(--color-darkgrey){{/match}};
         }
     </style>
 
@@ -30,7 +29,7 @@
 <body class="{{body_class}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Modern sans-serif"}} has-sans-body{{/match}}">
 <div class="viewport">
 
-    <header id="gh-head" class="gh-head{{#match @custom.publication_cover_style "!=" "None"}} has-cover{{/match}}">
+    <header id="gh-head outer" class="gh-head{{#match @custom.publication_cover_style "!=" "None"}} has-cover{{/match}}">
         <nav class="gh-head-inner inner gh-container">
 
             <div class="gh-head-brand">
@@ -59,12 +58,7 @@
                         <a class="gh-social-twitter" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
                     {{/if}}
                 </div>
-
-                {{#unless @member}}
-                    <a class="gh-head-button" href="#/portal/signup" data-portal="signup">Subscribe</a>
-                {{else}}
-                    <a class="gh-head-button" href="#/portal/account" data-portal="account">Account</a>
-                {{/unless}}
+                <a class="gh-head-button" href={{@custom.header_button_href}} data-portal="signup">{{@custom.header_button_text}}</a>
             </div>
         </nav>
     </header>
@@ -81,7 +75,7 @@
             <nav class="site-footer-nav">
                 {{navigation type="secondary"}}
             </nav>
-            <div><a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a></div>
+            <div><a href={{@site.url}}>Latest Posts</a></div>
         </div>
     </footer>
 

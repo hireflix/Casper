@@ -40,26 +40,26 @@
                         {{@site.title}}
                     {{/if}}
                 </a>
-                <a class="gh-burger" role="button">
+                {{!-- <a class="gh-burger" role="button">
                     <div class="gh-burger-box">
                         <div class="gh-burger-inner"></div>
                     </div>
-                </a>
+                </a> --}}
             </div>
             <div class="gh-head-menu">
                 {{navigation}}
             </div>
             <div class="gh-head-actions">
-                <div class="gh-social">
+                {{!-- <div class="gh-social">
                     {{#if @site.facebook}}
                         <a class="gh-social-facebook" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
                     {{/if}}
                     {{#if @site.twitter}}
                         <a class="gh-social-twitter" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
                     {{/if}}
-                </div>
-                <a class="gh-head-button" href={{@custom.header_button_href}} data-portal="signup">{{@custom.header_button_text}}</a>
-            </div>
+                </div> --}}
+                <a class="gh-head-button" href={{@custom.primary_call_to_action_button_href}} data-portal="signup">{{@custom.primary_call_to_action_button_text}}</a>
+            </div>            
         </nav>
     </header>
 
@@ -98,6 +98,10 @@ $(document).ready(function () {
     });
     // FitVids - Makes video embeds responsive
     $(".gh-content").fitVids();
+
+    if (window.Casper) {
+        window.Casper.floatingHeader()
+    }
 });
 </script>
 

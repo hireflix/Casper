@@ -194,7 +194,7 @@ production stylesheet in assets/built/screen.css
 .gh-head-inner {
     display: grid;
     grid-gap: 2.5vmin;
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: auto max-content max-content;
     grid-auto-flow: row dense;
 }
 
@@ -228,6 +228,30 @@ production stylesheet in assets/built/screen.css
 /* Primary Navigation
 /* ---------------------------------------------------------- */
 
+@media (max-width: 412px) {
+    .gh-head-actions, .gh-head-menu {
+        display: none !important;
+    }
+
+    .gh-head-inner {
+        justify-content: center;
+        grid-template-columns: auto;
+    }
+}
+
+@media (max-width: 500px) {
+    .gh-head-menu {
+        visibility: hidden !important;
+    }
+}
+
+@media (max-width: 412px) {
+    .gh-head-menu {
+        display: none !important;
+    }
+}
+
+
 .gh-head-menu {
     display: flex;
     align-items: center;
@@ -251,7 +275,9 @@ production stylesheet in assets/built/screen.css
 .gh-head-menu .nav a {
     display: inline-block;
     padding: 5px 0;
-    opacity: 0.8
+    opacity: 0.8;
+    color: black;
+    font-size: 1.75rem;
 }
 
 .gh-head-menu .nav a:hover {
@@ -322,6 +348,14 @@ a.gh-head-button {
     --webkit-font-smoothing: antialiased;
     background: var(--ghost-accent-color);
     border-radius: 30px;
+}
+
+.gh-head-button.outline {
+    background: white !important;
+    border-width: 2px;
+    border-color: var(--ghost-accent-color) !important;
+    border-style: solid;
+    color: var(--ghost-accent-color) !important;
 }
 
 
@@ -890,7 +924,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 
 .article-tag {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin: 0 0 0.5rem;
     color: var(--color-midgrey);
@@ -907,6 +941,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 
 .article-title {
     color: color-mod(var(--color-darkgrey) l(-5%));
+    text-align: center;
 }
 
 .has-serif-title .article-title {
@@ -918,6 +953,11 @@ make sure this only happens on large viewports / desktop-ish devices.
     font-size: 2rem;
     line-height: 1.4em;
     opacity: 0.6;
+}
+
+.article-image {
+    padding-top: 50%;
+    position: relative;
 }
 
 .gh-canvas .article-image {
@@ -938,6 +978,16 @@ make sure this only happens on large viewports / desktop-ish devices.
     display: block;
     margin-left: auto;
     margin-right: auto;
+    /* width: 100%; */
+    object-fit: cover;
+    border-radius: 5px;
+
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
     width: 100%;
 }
 
@@ -1359,19 +1409,57 @@ iframe.instagram-media + script + :not([id]) {
 
 .article-byline {
     display: flex;
-    justify-content: space-between;
-    margin: 20px 0 0;
+    justify-content: center;
+    margin: 0px 0 0;
 }
 
 .article-byline-content {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     display: flex;
     align-items: center;
+    /* justify-self: center; */
 }
 
 .article-byline-content .author-list {
     justify-content: flex-start;
     padding: 0 12px 0 0;
+}
+
+.article-byline-content .author-avatar {
+    width: 25px;
+    height: 25px;
+}
+
+.article-byline-content .author-name {
+    margin: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 600px;
+}
+
+.article-byline-meta .byline-meta-content {
+    margin-left: 2rem;
+}
+
+.article-byline .article-byline-meta {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 400px) {
+    .article-byline-content .author-name {
+        display: none !important;
+    }
+    .article-byline-content .byline-meta-content {
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .article-byline-content .author-name {
+        max-width: 300px;
+    }
 }
 
 .article-byline-meta {
@@ -1490,26 +1578,42 @@ iframe.instagram-media + script + :not([id]) {
 .read-more-wrap {
     width: 100%;
     padding: 4vmin;
-    margin: 40px auto -40px;
+    margin: 40px auto 0px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     background: #ffffff;
 }
 
-.read-more-cta-box {
-    background: #fff;
+.post-cta-box {
     width: 100%;
-    border-radius: 4px;
     padding: 40px 15px;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    /* margin-top: 10px;
+    margin-bottom: 30px; */
     display: grid;
     align-items: center;
     justify-items: center;
+    text-align: center;
+}
+
+.post-cta-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.post-cta-box h2 {
+    font-size: 2.6rem;
+    font-weight: 600;
+    margin: 1.5em 0 0.5em !important;
+}
+
+.post-cta-box p {
+    font-size: 1.1em;
+    color: #35373a !important;
 }
 
 .read-more {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 4vmin;
 }
 
@@ -2150,6 +2254,10 @@ html.dark-mode .kg-header-card h3.kg-header-card-subheader {
     transform: translate3d(0, -120%, 0);
 }
 
+.floating-header .gh-head-button {
+    margin-right: 10px;
+}
+
 .floating-active {
     visibility: visible;
     transition: all 500ms cubic-bezier(0.22, 1, 0.27, 1);
@@ -2158,7 +2266,7 @@ html.dark-mode .kg-header-card h3.kg-header-card-subheader {
 
 .floating-header-logo {
     overflow: hidden;
-    margin: 0 0 0 20px;
+    margin: 0 10px 0 20px;
     font-size: 1.6rem;
     line-height: 1em;
     letter-spacing: -1px;
@@ -2195,9 +2303,10 @@ html.dark-mode .kg-header-card h3.kg-header-card-subheader {
     color: #2e2e2e;
     font-size: 1.6rem;
     line-height: 1.3em;
-    font-weight: bold;
+    /* font-weight: bold; */
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align: center;
 }
 
 .floating-header-share {
@@ -2266,9 +2375,8 @@ html.dark-mode .kg-header-card h3.kg-header-card-subheader {
     width: 100%;
     height: 2px;
     border: none;
-    color: var(--blue);
+    color: var(--ghost-accent-color);
     background: transparent;
-
     appearance: none;
 }
 
@@ -2277,11 +2385,11 @@ html.dark-mode .kg-header-card h3.kg-header-card-subheader {
 }
 
 .progress::-webkit-progress-value {
-    background-color: var(--blue);
+    background-color: var(--ghost-accent-color);
 }
 
 .progress::-moz-progress-bar {
-    background-color: var(--blue);
+    background-color: var(--ghost-accent-color);
 }
 
 .progress-container {
@@ -2298,12 +2406,12 @@ html.dark-mode .kg-header-card h3.kg-header-card-subheader {
     display: block;
     width: 50%;
     height: inherit;
-    background-color: var(--blue);
+    background-color: var(--ghost-accent-color);
 }
 
 @media (max-width: 900px) {
     .floating-header {
-        height: 40px;
+        height: 60px;
     }
     .floating-header-title,
     .floating-header-logo {

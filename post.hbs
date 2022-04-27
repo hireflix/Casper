@@ -86,8 +86,14 @@ into the {body} tag of the default.hbs template --}}
 {{#match @custom.call_to_action_block_placement "==" "Bottom of post"}}
 <section class="footer-cta cta-alt">
     <div class="inner">
-        {{#if @custom.call_to_action_text}}<h2>{{@custom.call_to_action_text}}</h2>{{/if}}
-        {{#if @custom.call_to_action_text_subtitle}}<h4>{{@custom.call_to_action_text_subtitle}}</h4>{{/if}}
+        <div class="post-cta-box">
+            {{#if @custom.call_to_action_text}}<h2>{{@custom.call_to_action_text}}</h2>{{/if}}
+            {{#if @custom.call_to_action_text_subtitle}}<p>{{@custom.call_to_action_text_subtitle}}</p>{{/if}}
+            <div class="post-cta-buttons">
+                <a class="gh-head-button" href={{@custom.primary_call_to_action_button_href}} data-portal="signup">{{@custom.primary_call_to_action_button_text}}</a>
+                <a class="gh-head-button outline" href={{@custom.secondary_call_to_action_button_href}} data-portal="signup">{{@custom.secondary_call_to_action_button_text}}</a>
+            </div>
+        </div>
         {{!-- <a class="footer-cta-button" href="#/portal" data-portal>
             <div class="footer-cta-input">Enter your email</div>
             <span>Subscribe</span>
@@ -106,7 +112,7 @@ into the {body} tag of the default.hbs template --}}
 
     This query gets the latest 3 posts on the site, but adds a filter to
     exclude the post we're currently on from being included. --}}
-    {{#get "posts" filter="id:-{{id}}" include="authors" limit="3" as |more_posts|}}
+    {{#get "posts" filter="id:-{{id}}" include="authors" limit="2" as |more_posts|}}
         {{#if more_posts}}
             <aside class="read-more-wrap">
                 <div class="read-more inner">
@@ -115,10 +121,13 @@ into the {body} tag of the default.hbs template --}}
                     {{/foreach}}
                 </div>
                 {{#match @custom.call_to_action_block_placement "==" "After recent posts"}}
-                <div class="read-more-cta-box">
+                <div class="post-cta-box">
                     {{#if @custom.call_to_action_text}}<h2>{{@custom.call_to_action_text}}</h2>{{/if}}
-                    {{#if @custom.call_to_action_text_subtitle}}<h4>{{@custom.call_to_action_text_subtitle}}</h4>{{/if}}   
-                </div>
+                    {{#if @custom.call_to_action_text_subtitle}}<p>{{@custom.call_to_action_text_subtitle}}</p>{{/if}}
+                    <div class="post-cta-buttons">
+                        <a class="gh-head-button" href={{@custom.primary_call_to_action_button_href}} data-portal="signup">{{@custom.primary_call_to_action_button_text}}</a>
+                        <a class="gh-head-button outline" href={{@custom.secondary_call_to_action_button_href}} data-portal="signup">{{@custom.secondary_call_to_action_button_text}}</a>
+                    </div>
                 </div>
                 {{/match}}
             </aside>

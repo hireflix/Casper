@@ -20,9 +20,9 @@
         //   Dropping the scroll event and using only a raf loop results in smoother
         //   scrolling but continuous processing even when not scrolling
 
-        var progressBar = document.querySelector('#reading-progress');
+        var progressBar = document.querySelector('#progress');
         var header = document.querySelector('.floating-header');
-        var title = document.querySelector('.post-full-title');
+        var title = document.querySelector('.article-title');
 
         var lastScrollY = window.scrollY;
         var lastWindowHeight = window.innerHeight;

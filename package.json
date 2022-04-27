@@ -142,7 +142,7 @@
                 "type": "color",
                 "default": "#ffffff"
             },
-            "header_button_text_color": {
+            "primary_call_to_action_button_text_color": {
                 "type": "select",
                 "options": [
                     "Light",
@@ -150,11 +150,23 @@
                 ],
                 "default": "Dark"
             },
-            "header_button_text": {
+            "primary_call_to_action_button_text": {
                 "type": "text",
                 "default": "Try Hireflix"
             },
-            "header_button_href": {
+            "primary_call_to_action_button_href": {
+                "type": "text",
+                "default": "#"
+            },
+            "secondary_call_to_action_button_text": {
+                "type": "text",
+                "default": "Learn More"
+            },
+            "secondary_call_to_action_button_href": {
+                "type": "text",
+                "default": "#"
+            },
+            "floating_header_logo_href": {
                 "type": "text",
                 "default": "#"
             },

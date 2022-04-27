@@ -1,26 +1,20 @@
 <div class="floating-header">
     <div class="floating-header-logo">
-        <a href="{{@blog.url}}">
-            {{#if @blog.icon}}
-                <img src="{{@blog.icon}}" alt="{{@blog.title}} icon" />
+        <a href="{{@custom.floating_header_logo_href}}">
+            {{#if @site.logo}}
+                <img src="{{@site.logo}}" alt="{{@site.title}} icon" />
+            {{else}}
+            <span>{{@site.title}}</span>
             {{/if}}
-            <span>{{@blog.title}}</span>
         </a>
     </div>
+    {{#unless @site.logo}}
     <span class="floating-header-divider">&mdash;</span>
+    {{/unless}}
     <div class="floating-header-title">{{title}}</div>
-    <div class="floating-header-share">
-        {{!-- <div class="floating-header-share-label">Share this {{> "icons/point"}}</div> --}}
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
-            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
-            {{> "icons/twitter"}}
-        </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
-            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
-            {{> "icons/facebook"}}
-        </a>
-    </div>
-    <progress class="progress" value="0">
+    <a class="gh-head-button" href={{@custom.primary_call_to_action_button_href}} data-portal="signup">{{@custom.primary_call_to_action_button_text}}</a>
+    {{!-- <button id="floating-header-cta" class="floating-header-cta">Try Retool</button> --}}
+    <progress id="progress" class="progress" value="0">
         <div class="progress-container">
             <span class="progress-bar"></span>
         </div>

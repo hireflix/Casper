@@ -337,7 +337,10 @@ production stylesheet in assets/built/screen.css
 }
 
 a.gh-head-button {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 10px 18px;
     color: #ffffff;
     font-weight: 800;

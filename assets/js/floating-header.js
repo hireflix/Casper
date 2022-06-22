@@ -24,6 +24,10 @@
         var header = document.querySelector('.floating-header');
         var title = document.querySelector('.article-title');
 
+        if (!title || !header || !progressBar) {
+            return
+        }
+
         var lastScrollY = window.scrollY;
         var lastWindowHeight = window.innerHeight;
         var lastDocumentHeight = document.body.clientHeight;

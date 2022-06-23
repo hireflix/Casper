@@ -142,6 +142,10 @@
                 "type": "color",
                 "default": "#ffffff"
             },
+            "header_logo_href": {
+                "type": "text",
+                "default": "#"
+            },
             "primary_call_to_action_button_text_color": {
                 "type": "select",
                 "options": [
